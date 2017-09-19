@@ -8,14 +8,18 @@ export default class BackToPage2 extends Component {
     }
     render() {
         return (
-            <Container>
-                <Content>
-                    <Button iconLeft light onPress={this.props.lastPage}>
-                        <Icon name="home" />
-                        <Text>Back</Text>
-                    </Button>
-                </Content>
-            </Container>
+            <Button
+                rounded
+                iconLeft
+                light
+                onPress={this.props.lastPage}
+                style={{
+                    marginLeft: 5
+                }}
+            >
+                <Icon name="ios-arrow-round-back-outline" />
+                <Text>Back</Text>
+            </Button>
         );
     }
 }

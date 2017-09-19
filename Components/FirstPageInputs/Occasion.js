@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, StatusBar } from "react-native";
 import {
     Container,
     Header,
@@ -7,7 +7,10 @@ import {
     Form,
     Item,
     Input,
-    Icon
+    Icon,
+    Button,
+    Card,
+    CardItem
 } from "native-base";
 
 export default class Occasion extends Component {
@@ -21,23 +24,49 @@ export default class Occasion extends Component {
     }
     render() {
         return (
-            <Container>
+            <Container
+                style={{
+                    backgroundColor: "#a3e4f9"
+                }}
+            >
+                <StatusBar backgroundColor="#a3e4f9" barStyle="light-content" />
+                <Icon
+                    name="home"
+                    onPress={this.goBack}
+                    style={{
+                        color: "#ffffff"
+                    }}
+                />
                 <Content>
-                    <Icon name="home" onPress={this.goBack} />
-                    <Form>
-                        <Text>
-                            Whats the Occasion? {this.state.occasion}
-                        </Text>
-                        <Item>
-                            <Input
-                                placeholder="occasion"
-                                onChangeText={text =>
-                                    this.setState({ occasion: text })}
-                                value={this.state.occasion}
-                            />
-                        </Item>
-                        <Text onPress={this.setOccasion}>Button</Text>
-                    </Form>
+                    <Card
+                        style={{
+                            alignItems: "center"
+                        }}
+                    >
+                        <CardItem header>
+                            <Text>Whats the Occasion?</Text>
+                        </CardItem>
+                        <CardItem>
+                            <Item rounded>
+                                <Input
+                                    placeholder="occasion"
+                                    onChangeText={text =>
+                                        this.setState({ occasion: text })}
+                                    value={this.state.occasion}
+                                />
+                            </Item>
+                        </CardItem>
+                        <CardItem>
+                            <Button
+                                block
+                                style={{
+                                    backgroundColor: "#a3e4f9"
+                                }}
+                            >
+                                <Text onPress={this.setOccasion}>Button</Text>
+                            </Button>
+                        </CardItem>
+                    </Card>
                 </Content>
             </Container>
         );

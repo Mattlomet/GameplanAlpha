@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, StatusBar } from "react-native";
 import {
     Container,
     Header,
@@ -7,7 +7,10 @@ import {
     Form,
     Item,
     Input,
-    Icon
+    Icon,
+    Button,
+    Card,
+    CardItem
 } from "native-base";
 
 export default class LocationRadius extends Component {
@@ -23,38 +26,78 @@ export default class LocationRadius extends Component {
     }
     render() {
         return (
-            <Container>
+            <Container
+                style={{
+                    backgroundColor: "#a3e4f9"
+                }}
+            >
+                <StatusBar backgroundColor="#a3e4f9" barStyle="light-content" />
+                <Icon
+                    name="home"
+                    onPress={this.goBack}
+                    style={{
+                        color: "#ffffff"
+                    }}
+                />
                 <Content>
-                    <Icon name="home" onPress={this.goBack} />
-                    <Form>
-                        <Text>
-                            Location: {this.state.location}
-                        </Text>
-                        <Text>Where?</Text>
-                        <Item rounded>
-                            <Input
-                                placeholder="Philly"
-                                onChangeText={text =>
-                                    this.setState({ location: text })}
-                                value={this.state.location}
-                            />
-                        </Item>
-                        <Text onPress={this.setWhere}>Button</Text>
-
-                        <Text>
-                            Radius(in Miles): {this.state.radius}
-                        </Text>
-                        <Text>How Far?</Text>
-                        <Item rounded>
-                            <Input
-                                placeholder="5 miles"
-                                onChangeText={text =>
-                                    this.setState({ radius: text })}
-                                value={this.state.radius}
-                            />
-                        </Item>
-                        <Text onPress={this.setHowFar}>Button</Text>
-                    </Form>
+                    <Card
+                        style={{
+                            alignItems: "center"
+                        }}
+                    >
+                        <CardItem Header>
+                            <Text>Where?</Text>
+                        </CardItem>
+                        <CardItem>
+                            <Item rounded>
+                                <Input
+                                    placeholder="Philly"
+                                    onChangeText={text =>
+                                        this.setState({ location: text })}
+                                    value={this.state.location}
+                                />
+                            </Item>
+                        </CardItem>
+                        <CardItem>
+                            <Button
+                                block
+                                style={{
+                                    backgroundColor: "#a3e4f9"
+                                }}
+                            >
+                                <Text onPress={this.setWhere}>Button</Text>
+                            </Button>
+                        </CardItem>
+                    </Card>
+                    <Card
+                        style={{
+                            alignItems: "center"
+                        }}
+                    >
+                        <CardItem Header>
+                            <Text>How Far?</Text>
+                        </CardItem>
+                        <CardItem>
+                            <Item rounded>
+                                <Input
+                                    placeholder="5 miles"
+                                    onChangeText={text =>
+                                        this.setState({ radius: text })}
+                                    value={this.state.radius}
+                                />
+                            </Item>
+                        </CardItem>
+                        <CardItem>
+                            <Button
+                                block
+                                style={{
+                                    backgroundColor: "#a3e4f9"
+                                }}
+                            >
+                                <Text onPress={this.setHowFar}>Button</Text>
+                            </Button>
+                        </CardItem>
+                    </Card>
                 </Content>
             </Container>
         );
@@ -63,11 +106,9 @@ export default class LocationRadius extends Component {
         this.props.backPage();
     }
     setWhere() {
-        alert("SetWhere has ran");
         this.props.pickLocation(this.state.location);
     }
     setHowFar() {
-        alert("sethow far has ran");
         this.props.pickRadius(this.state.radius);
     }
 }

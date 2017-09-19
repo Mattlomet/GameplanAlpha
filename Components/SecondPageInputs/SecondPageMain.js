@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 import {
     Container,
     Header,
@@ -14,6 +14,7 @@ import {
     Row
 } from "native-base";
 import EmailGroup from "./EmailGroup";
+import ReviewGamePlan from "./ReviewGamePlan";
 import GroupName from "./GroupName";
 import AmountOfGuests from "./AmountOfGuests";
 import ToPage3 from "./ToPage3";
@@ -26,94 +27,144 @@ export default class SecondPageMain extends Component {
             page: ""
         };
         this.openEmail = this.openEmail.bind(this);
+        this.openReview = this.openReview.bind(this);
         this.backPage = this.backPage.bind(this);
+        this.pickAmountOfGuestsHandler2 = this.pickAmountOfGuestsHandler2.bind(
+            this
+        );
+        this.pickGroupNameHandler2 = this.pickGroupNameHandler2.bind(this);
     }
     render() {
         if (this.state.page == "email") {
             return <EmailGroup backPage={this.backPage} />;
+        }
+        if (this.state.page == "review") {
+            return (
+                <ReviewGamePlan
+                    Location={this.props.Location}
+                    Radius={this.props.Radius}
+                    Occasion={this.props.Occasion}
+                    Time={this.props.Time}
+                    GroupDate={this.props.GroupDate}
+                    GroupName={this.props.GroupName}
+                    GuestNumber={this.props.GuestNumber}
+                    backPage={this.backPage}
+                />
+            );
         } else if (this.state.page == "") {
             return (
                 <Container
                     style={{
-                        backgroundColor: "rgba(0, 194, 255, 0.25)"
+                        backgroundColor: "#a3e4f9"
                     }}
                 >
-                    <Header
-                        style={{
-                            backgroundColor: "#00c2ff"
-                        }}
-                    >
-                        <Text
-                            style={{
-                                marginTop: 10,
-                                fontFamily: "Monaco",
-                                fontSize: 25,
-                                color: "#ffffff"
-                            }}
-                        >
-                            Gameplan
-                        </Text>
-                    </Header>
+                    <StatusBar
+                        backgroundColor="#a3e4f9"
+                        barStyle="light-content"
+                    />
                     <Content>
                         <Container>
-                            <Grid>
-                                <Left>
+                            <Text
+                                style={{
+                                    paddingLeft: 115,
+                                    paddingBottom: 10,
+                                    marginTop: 10,
+                                    fontFamily: "Monaco",
+                                    fontSize: 25,
+                                    color: "#fafafa",
+                                    borderBottomWidth: 2,
+                                    borderColor: "#f0f0f0",
+                                    marginLeft: 5,
+                                    marginRight: 5
+                                }}
+                            >
+                                Gameplan
+                            </Text>
+
+                            <Grid
+                                style={{
+                                    marginTop: 35,
+                                    marginBottom: 45
+                                }}
+                            >
+                                <Left
+                                    style={{
+                                        alignItems: "center",
+                                        marginLeft: 5,
+                                        marginRight: 5,
+
+                                        height: 150,
+                                        backgroundColor: "#ffffff"
+                                    }}
+                                >
                                     <GroupName
-                                        pickGroupName={this.props.pickGroupName}
+                                        pickGroupName={
+                                            this.pickGroupNameHandler2
+                                        }
                                     />
                                 </Left>
-                                <Right>
+                                <Right
+                                    style={{
+                                        alignItems: "center",
+                                        marginRight: 5,
+                                        marginLeft: 5,
+
+                                        height: 150,
+                                        backgroundColor: "#ffffff"
+                                    }}
+                                >
                                     <AmountOfGuests
                                         pickAmountOfGuests={
-                                            this.props.pickAmountOfGuests
+                                            this.pickAmountOfGuestsHandler2
                                         }
                                     />
                                 </Right>
                             </Grid>
-                            <Grid
+                            <Card
                                 style={{
-                                    height: 5,
-                                    backgroundColor: "rgb(255, 255, 255)"
+                                    height: 100,
+                                    marginTop: 10
                                 }}
                             >
-                                <Row>
-                                    <Left>
-                                        <Icon
-                                            active
-                                            name="ios-mail-open-outline"
-                                        />
-                                        <Text>Email Collaborators</Text>
-                                    </Left>
+                                <CardItem header>
+                                    <Icon active name="ios-mail-open-outline" />
+                                    <Text>Email Collaborators</Text>
                                     <Right>
                                         <Icon
                                             name="arrow-forward"
                                             onPress={this.openEmail}
                                         />
                                     </Right>
-                                </Row>
-                            </Grid>
-                            <Grid
+                                </CardItem>
+                            </Card>
+                            <Card
                                 style={{
-                                    marginTop: 10
+                                    height: 100,
+                                    marginTop: 15
                                 }}
                             >
+                                <CardItem header>
+                                    <Icon active name="map" />
+                                    <Text>Review GamePlan</Text>
+                                    <Right>
+                                        <Icon
+                                            name="arrow-forward"
+                                            onPress={this.openReview}
+                                        />
+                                    </Right>
+                                </CardItem>
+                            </Card>
+
+                            <Grid>
                                 <Row>
                                     <Left>
                                         <BackToPage1
                                             lastPage={this.props.lastPage}
-                                            style={{
-                                                width: 2,
-                                                height: 4
-                                            }}
                                         />
                                     </Left>
                                     <Right>
                                         <ToPage3
                                             nextPage={this.props.nextPage}
-                                            style={{
-                                                width: 2,
-                                                height: 4
-                                            }}
                                         />
                                     </Right>
                                 </Row>
@@ -127,7 +178,16 @@ export default class SecondPageMain extends Component {
     openEmail() {
         this.setState({ page: "email" });
     }
+    openReview() {
+        this.setState({ page: "review" });
+    }
     backPage() {
         this.setState({ page: "" });
+    }
+    pickGroupNameHandler2(string) {
+        this.props.pickGroupName(string);
+    }
+    pickAmountOfGuestsHandler2(string) {
+        this.props.pickAmountOfGuests(string);
     }
 }

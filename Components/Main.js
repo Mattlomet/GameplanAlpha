@@ -14,8 +14,8 @@ export default class Main extends Component {
             radius: "",
             occasion: "",
             time: "",
-            date: "",
-            amountOfGuests: 0,
+            groupDate: "",
+            amountOfGuests: "",
             groupName: "",
             atmosphere: "",
             brandPreference: "",
@@ -38,28 +38,47 @@ export default class Main extends Component {
     render() {
         if (this.state.page == "firstPage") {
             return (
-                <FirstPageMain
-                    location={this.state.location}
-                    Radius={this.state.radius}
-                    Occasion={this.state.occasion}
-                    Time={this.state.time}
-                    Date={this.state.date}
-                    pickLocation={this.pickLocation}
-                    pickRadius={this.pickRadius}
-                    pickOccasion={this.pickOccasion}
-                    pickTime={this.pickTime}
-                    pickDate={this.pickDate}
-                    nextPage={this.goToPage2}
-                />
+                <View
+                    style={{
+                        height: 600
+                    }}
+                >
+                    <FirstPageMain
+                        Location={this.state.location}
+                        Radius={this.state.radius}
+                        Occasion={this.state.occasion}
+                        Time={this.state.time}
+                        GroupDate={this.state.groupDate}
+                        pickLocation={this.pickLocation}
+                        pickRadius={this.pickRadius}
+                        pickOccasion={this.pickOccasion}
+                        pickTime={this.pickTime}
+                        pickDate={this.pickDate}
+                        nextPage={this.goToPage2}
+                    />
+                </View>
             );
         } else if (this.state.page == "secondPage") {
             return (
-                <SecondPageMain
-                    pickAmountOfGuests={this.pickAmountOfGuests}
-                    pickGroupName={this.pickGroupName}
-                    lastPage={this.goToPage1}
-                    nextPage={this.goToPage3}
-                />
+                <View
+                    style={{
+                        height: 600
+                    }}
+                >
+                    <SecondPageMain
+                        Location={this.state.location}
+                        Radius={this.state.radius}
+                        Occasion={this.state.occasion}
+                        Time={this.state.time}
+                        GroupDate={this.state.groupDate}
+                        GroupName={this.state.groupName}
+                        GuestNumber={this.state.amountOfGuests}
+                        pickAmountOfGuests={this.pickAmountOfGuests}
+                        pickGroupName={this.pickGroupName}
+                        lastPage={this.goToPage1}
+                        nextPage={this.goToPage3}
+                    />
+                </View>
             );
         } else if (this.state.page == "thirdPage") {
             return (
@@ -98,13 +117,13 @@ export default class Main extends Component {
         this.setState({ time: event });
     }
     pickDate(event) {
-        this.setState({ date: event });
+        this.setState({ groupDate: event });
     }
     pickAmountOfGuests(event) {
-        this.setState({ amountOfGuests: event.target.value });
+        this.setState({ amountOfGuests: event });
     }
     pickGroupName(event) {
-        this.setState({ groupName: event.target.value });
+        this.setState({ groupName: event });
     }
     pickAtmosphere(event) {
         this.setState({ atmosphere: event.target.value });

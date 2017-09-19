@@ -8,14 +8,21 @@ export default class ToPage2 extends Component {
     }
     render() {
         return (
-            <Container>
-                <Content>
-                    <Button iconRight light onPress={this.props.nextPage}>
-                        <Text>Next</Text>
-                        <Icon name="arrow-forward" />
-                    </Button>
-                </Content>
-            </Container>
+            <Button
+                full
+                rounded
+                iconRight
+                light
+                onPress={this.props.nextPage}
+                style={{
+                    marginBottom: 10,
+                    marginLeft: 5,
+                    marginRight: 5
+                }}
+            >
+                <Text>Next</Text>
+                <Icon name="ios-arrow-round-forward-outline" />
+            </Button>
         );
     }
 }

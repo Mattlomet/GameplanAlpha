@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 import {
     Container,
     Header,
@@ -30,14 +30,15 @@ export default class ThirdPageMain extends Component {
         return (
             <Container
                 style={{
-                    backgroundColor: "rgba(0, 194, 255, 0.25)"
+                    backgroundColor: "#a3e4f9"
                 }}
             >
+                <StatusBar backgroundColor="#a3e4f9" barStyle="light-content" />
                 <Content>
                     <Grid>
                         <Row
                             style={{
-                                marginTop: 25,
+                                marginTop: 5,
                                 height: 150
                             }}
                         >
@@ -45,7 +46,7 @@ export default class ThirdPageMain extends Component {
                         </Row>
                         <Row
                             style={{
-                                marginTop: 25,
+                                marginTop: 15,
 
                                 height: 150
                             }}
@@ -54,32 +55,28 @@ export default class ThirdPageMain extends Component {
                         </Row>
                         <Row
                             style={{
-                                marginTop: 25,
+                                marginTop: 15,
                                 height: 150
                             }}
                         >
                             <BrandPreference />
                         </Row>
                         <Row>
-                            <Left>
-                                <BackToPage2
-                                    lastPage={this.props.lastPage}
-                                    style={{
-                                        width: 2,
-                                        marginTop: 100,
-                                        hieght: 1
-                                    }}
-                                />
+                            <Left
+                                style={{
+                                    marginTop: 10,
+                                    marginBottom: 5
+                                }}
+                            >
+                                <BackToPage2 lastPage={this.props.lastPage} />
                             </Left>
-                            <Right>
-                                <ToPage4
-                                    nextPage={this.props.nextPage}
-                                    style={{
-                                        width: 2,
-                                        marginTop: 100,
-                                        hieght: 1
-                                    }}
-                                />
+                            <Right
+                                style={{
+                                    marginTop: 10,
+                                    marginBottom: 5
+                                }}
+                            >
+                                <ToPage4 nextPage={this.props.nextPage} />
                             </Right>
                         </Row>
                     </Grid>

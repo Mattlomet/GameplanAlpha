@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 import {
     Container,
     Header,
@@ -10,7 +10,8 @@ import {
     Right,
     Body,
     Left,
-    Title
+    Title,
+    Button
 } from "native-base";
 import LocationRadius from "./LocationRadius";
 import Occasion from "./Occasion";
@@ -37,7 +38,6 @@ export default class FirstPageMain extends Component {
         if (this.state.page == "LocationRadius") {
             return (
                 <LocationRadius
-                    LocationTest={this.props.LocationTest}
                     pickLocation={this.pickLocationHandler2}
                     pickRadius={this.pickRadiusHandler2}
                     backPage={this.backPage}
@@ -65,26 +65,33 @@ export default class FirstPageMain extends Component {
                         backgroundColor: "#a3e4f9"
                     }}
                 >
-                    <Header
-                        style={{
-                            backgroundColor: "#00c2ff"
-                        }}
-                    >
+                    <StatusBar
+                        backgroundColor="#a3e4f9"
+                        barStyle="light-content"
+                    />
+                    <Content>
                         <Text
                             style={{
+                                paddingLeft: 60,
+                                paddingBottom: 10,
                                 marginTop: 10,
                                 fontFamily: "Monaco",
                                 fontSize: 25,
-                                color: "#fafafa"
+                                color: "#fafafa",
+                                borderBottomWidth: 2,
+                                borderColor: "#f0f0f0",
+                                marginLeft: 30,
+                                marginRight: 30
                             }}
                         >
                             Set Up GamePlan
                         </Text>
-                    </Header>
-                    <Content>
                         <Card
                             style={{
-                                marginTop: 10
+                                marginTop: 15,
+                                marginLeft: 5,
+                                marginRight: 5,
+                                height: 100
                             }}
                         >
                             <CardItem header>
@@ -97,20 +104,13 @@ export default class FirstPageMain extends Component {
                                     />
                                 </Right>
                             </CardItem>
-                            <CardItem>
-                                <Body>
-                                    <Text>
-                                        Location - {this.props.location}
-                                    </Text>
-                                    <Text>
-                                        Radius(Miles) - {this.props.Radius}
-                                    </Text>
-                                </Body>
-                            </CardItem>
                         </Card>
                         <Card
                             style={{
-                                marginTop: 20
+                                marginTop: 25,
+                                marginLeft: 5,
+                                marginRight: 5,
+                                height: 100
                             }}
                         >
                             <CardItem header>
@@ -124,17 +124,14 @@ export default class FirstPageMain extends Component {
                                     />
                                 </Right>
                             </CardItem>
-                            <CardItem>
-                                <Body>
-                                    <Text>
-                                        Occasion - {this.props.Occasion}
-                                    </Text>
-                                </Body>
-                            </CardItem>
                         </Card>
                         <Card
                             style={{
-                                marginTop: 20
+                                marginTop: 25,
+                                marginBottom: 40,
+                                marginLeft: 5,
+                                marginRight: 5,
+                                height: 100
                             }}
                         >
                             <CardItem header>
@@ -148,25 +145,8 @@ export default class FirstPageMain extends Component {
                                     />
                                 </Right>
                             </CardItem>
-                            <CardItem>
-                                <Body>
-                                    <Text>
-                                        Time - {this.props.Time}
-                                    </Text>
-                                    <Text>
-                                        Date - {this.props.Date}
-                                    </Text>
-                                </Body>
-                            </CardItem>
                         </Card>
-                        <Content
-                            style={{
-                                marginTop: 10,
-                                alignSelf: "flex-end"
-                            }}
-                        >
-                            <ToPage2 nextPage={this.props.nextPage} />
-                        </Content>
+                        <ToPage2 nextPage={this.props.nextPage} />
                     </Content>
                 </Container>
             );

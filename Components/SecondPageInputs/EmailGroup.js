@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, StatusBar } from "react-native";
 import {
     Container,
     Header,
@@ -7,7 +7,9 @@ import {
     Form,
     Item,
     Input,
-    Icon
+    Icon,
+    Card,
+    CardItem
 } from "native-base";
 
 export default class EmailGroup extends Component {
@@ -17,10 +19,25 @@ export default class EmailGroup extends Component {
     }
     render() {
         return (
-            <Container>
+            <Container
+                style={{
+                    backgroundColor: "#a3e4f9"
+                }}
+            >
+                <StatusBar backgroundColor="#a3e4f9" barStyle="light-content" />
+                <Icon
+                    name="home"
+                    onPress={this.goBack}
+                    style={{
+                        color: "#ffffff"
+                    }}
+                />
                 <Content>
-                    <Icon name="home" onPress={this.goBack} />
-                    <Text>Email Group</Text>
+                    <Card>
+                        <CardItem header>
+                            <Text>Email Group</Text>
+                        </CardItem>
+                    </Card>
                 </Content>
             </Container>
         );
